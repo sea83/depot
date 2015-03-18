@@ -8,3 +8,10 @@ ru:
         weight: Вес
     models:
       product: Товар
+  views:
+    pagination:
+      first: "&laquo; В начало"
+      last: "В конец &raquo;"
+      previous: "&lsaquo; Предыдущая"
+      next: "Следующая &rsaquo;"
+      truncate: "&hellip;"

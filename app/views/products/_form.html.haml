@@ -1,23 +1,24 @@
 = form_for @product do |f|
-  - if @product.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
-      %ul
-        - @product.errors.full_messages.each do |msg|
-          %li= msg
-
-  .form-group
-    =f.label :name
-    =f.text_field :name, class: "form-control"
-  .from-group
-    =f.label :discription
-    =f.text_area :discription, class: "form-control"
-  .from-group
-    =f.label :price
-    =f.text_field :price, class: "form-control"
-  .from-group
-    =f.label :weight
-    =f.text_field :weight, class: "form-control"
+  =error_messages_for(@product)
+  .row
+    .col-md-3
+      .form-group
+        =f.label :name
+        =f.text_field :name, class: "form-control"
+    .col-md-3
+      .from-group
+        =f.label :discription
+        =f.text_area :discription, class: "form-control"
+    .col-md-3
+      .from-group
+        =f.label :price
+        .input-group
+          =f.text_field :price, class: "form-control"
+          %span.input-group-addon руб
+    .col-md-3
+      .from-group
+        =f.label :weight
+        =f.text_field :weight, class: "form-control"
   .actions
     =f.submit nil, class: "btn btn-primary"
 

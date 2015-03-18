@@ -43,5 +43,6 @@ group :development, :test do
   gem 'spring'
 end
 gem 'haml-rails'
-gem 'bootstrap-sass'
-gem 'rails-i18n'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'rails-i18n', '~> 0.7'
+gem 'kaminari-bootstrap', '~> 3.0.1'

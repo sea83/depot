@@ -1,27 +1,22 @@
-%h1 Listing products
+%h1 Список товаров
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th Discription
-      %th Price
-      %th Weight
-      %th
-      %th
-      %th
-      
-  %tbody
-    - @products.each do |product|
-      %tr
-        %td= product.name
-        %td= product.discription
-        %td= product.price
-        %td= product.weight
-        %td= link_to 'Show', product
-        %td= link_to 'Edit', edit_product_path(product)
-        %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+.row
+  .list-group
+    .col-md-9
+      - @products.each do |product|
+        =link_to product, :class => "list-group-item" do
+          .list-group-item-text
+            %p= product.name
+          .list-group-item-text
+            %p= product.discription
+          .list-group-item-number
+            %b= number_to_currency(product.price)
+          .list-group-item-number
+            %b= product.weight
+          = link_to 'Показать', product, class:"btn btn-primary"
+          = link_to 'Редактировать', edit_product_path(product), class:"btn btn-primary"
+          = link_to 'Удалить', product, :method => :delete, :data => { :confirm => 'Вы уверены?' }, class:"btn btn-primary"
 
-%br
+=paginate @products
 
-= link_to 'New Product', new_product_path
+%h4= link_to 'Новый товар', new_product_path, class:"btn btn-primary"
