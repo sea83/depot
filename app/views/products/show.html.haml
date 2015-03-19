@@ -16,3 +16,6 @@
 = link_to 'Редактировать', edit_product_path(@product)
 \|
 = link_to 'Назад', products_path
+\|
+= link_to line_items_path(product_id:@product.id), data:{method: :post}, class: "btn btn-primary" do
+  Добавить в корзину

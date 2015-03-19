@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Quantity:
+  = @line_item.quantity
+%p
+  %b Price:
+  = @line_item.price
+%p
+  %b Cart:
+  = @line_item.cart
+%p
+  %b Product:
+  = @line_item.product
+
+= link_to 'Редактировать', edit_line_item_path(@line_item)
+\|
+= link_to 'Назад', line_items_path

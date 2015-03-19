@@ -44,5 +44,5 @@ group :development, :test do
 end
 gem 'haml-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
-gem 'rails-i18n', '~> 0.7'
+gem 'rails-i18n'
 gem 'kaminari-bootstrap', '~> 3.0.1'
