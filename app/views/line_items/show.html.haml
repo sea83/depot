@@ -1,16 +1,16 @@
 %p#notice= notice
 
 %p
-  %b Quantity:
+  %b Количество:
   = @line_item.quantity
 %p
-  %b Price:
+  %b Цена:
   = @line_item.price
 %p
-  %b Cart:
+  %b Корзина:
   = @line_item.cart
 %p
-  %b Product:
+  %b Товар:
   = @line_item.product
 
 = link_to 'Редактировать', edit_line_item_path(@line_item)
