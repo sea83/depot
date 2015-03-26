@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Почта:
+  = @user.email
+%p
+  %b Пароль:
+  = @user.password
+%p
+  %b Номер телефона:
+  = @user.phone_number
+%p
+  %b Адрес:
+  = @user.address
+%p
+  %b Роль:
+  = @user.role
+
+= link_to 'Редактировать', edit_user_path(@user)
+\|
+= link_to 'Назад', users_path

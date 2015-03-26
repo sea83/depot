@@ -11,7 +11,13 @@ ru:
         cart: Корзина
         quantity: Количество
         price: Цена
-
+      user:
+        email: Почта
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        phone_number: Номер телефона
+        address: Адрес
+        role: Роль
 
     models:
       product: Товар

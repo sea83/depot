@@ -1,27 +1,24 @@
-%h1 Список товаров
+.page-header
+  %h1 Корзина
+-if @line_items.blank?
+  .alert.alert-info В корзине нет товаров
+-else
+  .list-group
+    -@line_items.each_with_index do |line_item, i|
+      .list-group-item
+        .pull-right
+          =line_item.product.name
+          =line_item.quantity
+          &times;
+          =number_to_currency line_item.price
+          ="= #{number_to_currency line_item.total_price}"
+        %span.text-danger="#{i+1}"
+        =line_item.product.name
+        .clearfix
+  .alert.alert-info
+    Всего
+    =@line_items.to_a.sum(&:quantity)
+    товаров на сумму
+    =number_to_currency @line_items.to_a.sum(&:total_price)
 
-%table
-  %thead
-    %tr
-      %th Количество
-      %th Цена
-      %th Корзина
-      %th Продукты
-      %th
-      %th
-      %th
-      
-  %tbody
-    - @line_items.each do |line_item|
-      %tr
-        %td= line_item.quantity
-        %td= line_item.price
-        %td= line_item.cart
-        %td= line_item.product
-        %td= link_to 'Показать', line_item
-        %td= link_to 'Редактировать', edit_line_item_path(line_item)
-        %td= link_to 'Удалить', line_item, :method => :delete, :data => { :confirm => 'Вы уверены??' }
-
-%br
-
-= link_to 'Новый список товаров', new_line_item_path
+= link_to 'Очистить корзину', @cart, data:{method: :delete, confirm: "Вы уверены?"}, class:"btn btn-primary"
