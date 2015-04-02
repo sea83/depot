@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       session[:user_id]=@user.id
       redirect root_path, notice: "Вы зарегистрировались"
     else
-      redirect :new
+      render :new
     end
   end
 

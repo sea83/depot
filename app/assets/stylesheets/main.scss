@@ -5,5 +5,8 @@ $brand-primary: #2dcc70;
 .field_with_errors{
   @extend .has-error;
 }
+.alert-notice{
+  @extend .alert-success;
+}
 
 

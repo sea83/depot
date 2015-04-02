@@ -1,0 +1,16 @@
+%nav.navbar.navbar-default
+  .container
+    .navbar-header
+      =link_to "Магазин", root_path, class: "navbar-brand"
+    %ul.nav.navbar-nav
+      %li=link_to "Все товары", products_path
+      %li=link_to "Корзина",line_items_path
+    %ul.nav.navbar-nav.navbar-right
+      -if @current_user.blank?
+        %li=link_to 'Войти', login_path
+      -else
+        %li
+          %span.navbar-text=@current_user.email
+          =link_to 'Выйти',logout_path,
+          data:{method: :patch}
+
