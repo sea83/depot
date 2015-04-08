@@ -24,32 +24,52 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    @product=Product.find(params[:product_id])
-    @cart.add_item(@product)
-    redirect_to @product,notice: "Товар добавлен в корзину"
+    case params[:place]
+      when nil
+        @product = Product.find(params[:product_id])
+        @cart.add_item(@product)
+        if params[:product].blank?
+          redirect_to products_path, notice: 'Товар добавлен в корзину.'
+        else
+          redirect_to product_path(params[:product]), notice: 'Товар добавлен в корзину.'
+        end
+      when "cart"
+        set_line_item
+        @line_item.quantity+=1
+        @line_item.save
+        redirect_to @cart, notice: 'Товар добавлен в корзину.'
+      when "line_items"
+        set_line_item
+        @line_item.quantity+=1
+        @line_item.save
+        redirect_to line_items_path, notice: 'Товар добавлен в корзину.'
+    end
   end
 
   # PATCH/PUT /line_items/1
   # PATCH/PUT /line_items/1.json
   def update
-    respond_to do |format|
-      if @line_item.update(line_item_params)
-        format.html { redirect_to @line_item, notice: 'Список товаров успешно обновлен.' }
-        format.json { render :show, status: :ok, location: @line_item }
-      else
-        format.html { render :edit }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
-      end
+    if @line_item.update(line_item_params)
+      redirect_to @line_item, notice: 'Элемент успешно изменён.'
+    else
+      render :edit
     end
   end
 
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-    @line_item.destroy
-    respond_to do |format|
-      format.html { redirect_to line_items_url, notice: 'Список товаров успешно удален.' }
-      format.json { head :no_content }
+    if @line_item.quantity == 1
+      @line_item.destroy
+    else
+      @line_item.quantity -= 1
+      @line_item.save
+    end
+    case params[:place]
+      when "cart"
+        redirect_to @cart, notice: 'Товар успешно удалён.'
+      when "line_items"
+        redirect_to line_items_path, notice: 'Товар успешно удалён.'
     end
   end
 
