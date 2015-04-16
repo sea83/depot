@@ -5,6 +5,7 @@ class CartsController < ApplicationController
   # GET /carts.json
   def index
     @carts = Cart.all
+    respond_to(&:js)
   end
 
   # GET /carts/1
