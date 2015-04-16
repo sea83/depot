@@ -10,8 +10,5 @@
     =render 'navbar'
     .container
       =render 'flash_messages'
-    %nav.navbar.navbar-default
-      .container-fluid
-        .navbar-static-top
-          =show_cart(@cart) if @cart
-    .container=yield
+      =render(@cart) if @cart
+      =yield

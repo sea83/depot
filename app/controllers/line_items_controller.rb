@@ -24,26 +24,16 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    case params[:place]
-      when nil
         @product = Product.find(params[:product_id])
         @cart.add_item(@product)
-        if params[:product].blank?
-          redirect_to products_path, notice: 'Товар добавлен в корзину.'
-        else
-          redirect_to product_path(params[:product]), notice: 'Товар добавлен в корзину.'
+        respond_to do |format|
+          if params[:product].blank?
+             format.html {redirect_to products_path, notice: 'Товар добавлен в корзину.'}
+             format.js
+          else
+            redirect_to product_path(params[:product]), notice: 'Товар добавлен в корзину.'
+          end
         end
-      when "cart"
-        set_line_item
-        @line_item.quantity+=1
-        @line_item.save
-        redirect_to @cart, notice: 'Товар добавлен в корзину.'
-      when "line_items"
-        set_line_item
-        @line_item.quantity+=1
-        @line_item.save
-        redirect_to line_items_path, notice: 'Товар добавлен в корзину.'
-    end
   end
 
   # PATCH/PUT /line_items/1
