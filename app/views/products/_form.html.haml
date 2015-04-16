@@ -19,6 +19,10 @@
       .from-group
         =f.label :weight
         =f.text_field :weight, class: "form-control"
+      .form-group
+        =f.label :image
+        =f.file_field :image, class: "form-control"
+
   .actions
     =f.submit nil, class: "btn btn-primary"
 

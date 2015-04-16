@@ -6,6 +6,7 @@ ru:
         discription: Описание
         price: Цена
         weight: Вес
+        image: Картинка
       line_item:
         product: Товар
         cart: Корзина
